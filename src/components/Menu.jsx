@@ -1,19 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
+import "../assets/style.css";
 export default function Menu() {
+  // const navLinkClass = ({ isActive }) => {
+  //   return isActive ? "nav-link current" : "nav-link";
+  // };
+  // const navLinkStyle = ({ isActive }) => {
+  //   return isActive
+  //     ? {
+  //         color: "red",
+  //         background: "yellow",
+  //       }
+  //     : {};
+  // };
+  const CustomLink = ({ href, children, ...props }) => {
+    const resolved = useResolvedPath(href);
+    const match = useMatch({ path: resolved.pathname });
+
+    return (
+      <li className={`nav-item ${match ? "active" : ""}`}>
+        <Link to={href} className={`nav-link`} {...props}>
+          {children}
+        </Link>
+      </li>
+    );
+  };
   return (
     <ul className="nav flex-column">
-      <li>
-        <Link to="/">Trang chủ</Link>
-      </li>
-      <li>
-        <Link to="/gioi-thieu">Giới thiệu</Link>
-      </li>
-      <li>
-        <Link to="/san-pham">Sản phẩm</Link>
-      </li>
-      <li>
-        <Link to="/lien-he">Liên hệ</Link>
-      </li>
+      <CustomLink href="/">Trang chủ</CustomLink>
+      <CustomLink href="/gioi-thieu">Giới thiệu</CustomLink>
+      <CustomLink href="/san-pham?filter=abc">Sản phẩm</CustomLink>
+      <CustomLink href="/lien-he" target="_blank">
+        Liên hệ
+      </CustomLink>
     </ul>
   );
 }
