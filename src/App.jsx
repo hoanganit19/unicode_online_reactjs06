@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import ThankYou from "./pages/ThankYou";
+import Forbidden from "./pages/Forbidden";
 export default function App() {
   return (
     <div className="container py-3">
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/san-pham" element={<Products />} />
             <Route path="/lien-he" element={<Contact />} />
             <Route path="/thanh-cong" element={<ThankYou />} />
+            <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </div>
       </div>
