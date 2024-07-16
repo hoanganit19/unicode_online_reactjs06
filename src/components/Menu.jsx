@@ -28,7 +28,7 @@ export default function Menu() {
     <ul className="nav flex-column">
       <CustomLink href="/">Trang chủ</CustomLink>
       <CustomLink href="/gioi-thieu">Giới thiệu</CustomLink>
-      <CustomLink href="/san-pham?filter=abc">Sản phẩm</CustomLink>
+      <CustomLink href="/san-pham">Sản phẩm</CustomLink>
       <CustomLink href="/lien-he">Liên hệ</CustomLink>
     </ul>
   );

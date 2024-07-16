@@ -7,7 +7,7 @@ export default function Products() {
   const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
   const getPosts = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts1`);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
     if (!response.ok) {
       return navigate("/404");
     }
