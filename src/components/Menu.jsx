@@ -29,9 +29,7 @@ export default function Menu() {
       <CustomLink href="/">Trang chủ</CustomLink>
       <CustomLink href="/gioi-thieu">Giới thiệu</CustomLink>
       <CustomLink href="/san-pham?filter=abc">Sản phẩm</CustomLink>
-      <CustomLink href="/lien-he" target="_blank">
-        Liên hệ
-      </CustomLink>
+      <CustomLink href="/lien-he">Liên hệ</CustomLink>
     </ul>
   );
 }
