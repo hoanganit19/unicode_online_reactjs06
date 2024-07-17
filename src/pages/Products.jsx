@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { navigateForbidden } from "../ultis/forbidden";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Products() {
   const [posts, setPosts] = useState([]);
@@ -16,6 +16,7 @@ export default function Products() {
     setLoading(false);
   };
   useEffect(() => {
+    document.title = "Danh sách sản phẩm";
     getPosts();
   }, []);
   return (
@@ -26,8 +27,10 @@ export default function Products() {
       ) : (
         posts.map((post) => (
           <div key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
+            <h3>
+              <Link to={`/san-pham/${post.id}`}>{post.title}</Link>
+            </h3>
+            <hr />
           </div>
         ))
       )}
