@@ -12,6 +12,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Users from "./pages/Users";
 import BestSeller from "./pages/BestSeller/BestSeller";
 import BestSellerMonth from "./pages/BestSeller/BestSellerMonth";
+import AuthMiddleware from "./middlewares/AuthMiddleware";
+import Auth from "./pages/Auth/Auth";
 export default function App() {
   return (
     <div className="container py-3">
@@ -22,19 +24,24 @@ export default function App() {
         <div className="col-9">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gioi-thieu" element={<About />} />
-            <Route path="/san-pham">
-              <Route index element={<Products />} />
-              <Route path=":path" element={<ProductDetail />} />
-              <Route path="ban-chay">
-                <Route index element={<BestSeller />} />
-                <Route path="theo-thang" element={<BestSellerMonth />} />
+            <Route element={<AuthMiddleware />}>
+              <Route path="/gioi-thieu" element={<About />} />
+              <Route path="/san-pham">
+                <Route index element={<Products />} />
+                <Route path=":path" element={<ProductDetail />} />
+                <Route path="ban-chay">
+                  <Route index element={<BestSeller />} />
+                  <Route path="theo-thang" element={<BestSellerMonth />} />
+                </Route>
               </Route>
+              <Route path="/lien-he" element={<Contact />} />
+              <Route path="/thanh-cong" element={<ThankYou />} />
+              <Route path="/forbidden" element={<Forbidden />} />
+              <Route path="/users" element={<Users />} />
             </Route>
-            <Route path="/lien-he" element={<Contact />} />
-            <Route path="/thanh-cong" element={<ThankYou />} />
-            <Route path="/forbidden" element={<Forbidden />} />
-            <Route path="/users" element={<Users />} />
+            <Route path="/auth">
+              <Route path="login" element={<Auth />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

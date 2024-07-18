@@ -6,3 +6,7 @@
 /san-pham ==> Sản phẩm ==> Products
 /lien-he ==> Liên hệ ==> Contact
 ```
+
+## Bảo vệ Router
+
+Request ==> Middleware ==> Route ==> Component
