@@ -11,55 +11,59 @@ import BestSeller from "./pages/BestSeller/BestSeller";
 import BestSellerMonth from "./pages/BestSeller/BestSellerMonth";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import Auth from "./pages/Auth/Auth";
+import ScrollTop from "./components/ScrollTop";
 export default function App() {
-  const routes = [
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/gioi-thieu",
-      element: <About />,
-    },
-    {
-      path: "/san-pham",
-      element: <AuthMiddleware />,
-      children: [
-        {
-          index: true,
-          element: <Products />,
-        },
-        {
-          path: ":path",
-          element: <ProductDetail />,
-        },
-        {
-          path: "ban-chay",
-          children: [
-            {
-              index: true,
-              element: <BestSeller />,
-            },
-            {
-              path: "theo-thang",
-              element: <BestSellerMonth />,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "/auth/login",
-      element: <Auth />,
-    },
-  ];
-  const element = useRoutes(routes);
-  return element;
-  // return (
-  //   <Routes>
-  //     {publicRouter}
-  //     {privateRouter}
-  //     <Route path="*" element={<NotFound />} />
-  //   </Routes>
-  // );
+  // const routes = [
+  //   {
+  //     path: "/",
+  //     element: <Home />,
+  //   },
+  //   {
+  //     path: "/gioi-thieu",
+  //     element: <About />,
+  //   },
+  //   {
+  //     path: "/san-pham",
+  //     element: <AuthMiddleware />,
+  //     children: [
+  //       {
+  //         index: true,
+  //         element: <Products />,
+  //       },
+  //       {
+  //         path: ":path",
+  //         element: <ProductDetail />,
+  //       },
+  //       {
+  //         path: "ban-chay",
+  //         children: [
+  //           {
+  //             index: true,
+  //             element: <BestSeller />,
+  //           },
+  //           {
+  //             path: "theo-thang",
+  //             element: <BestSellerMonth />,
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     path: "/auth/login",
+  //     element: <Auth />,
+  //   },
+  // ];
+  // const element = useRoutes(routes);
+  // return element;
+  return (
+    <div style={{ height: "2000px" }}>
+      <ScrollTop />
+      <Routes>
+        {publicRouter}
+        {privateRouter}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
 }

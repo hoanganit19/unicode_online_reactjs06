@@ -6,6 +6,7 @@ export default function Products() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [keyword, setKeyword] = useState("");
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const handleChangeInputSearch = (e) => {
@@ -13,12 +14,12 @@ export default function Products() {
     setSearchParams({ query: e.target.value });
   };
   const getPosts = async (keyword = null) => {
-    let params = "";
-    if (keyword) {
-      params = "?q=" + keyword;
-    }
+    // let params = "";
+    // if (keyword) {
+    //   params = "?q=" + keyword;
+    // }
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts${params}`
+      `https://jsonplaceholder.typicode.com/posts?_limit=20&_page=${page}`
     );
     if (!response.ok) {
       return navigate("/404");
@@ -35,7 +36,7 @@ export default function Products() {
     } else {
       getPosts();
     }
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     if (keyword) {
@@ -59,14 +60,24 @@ export default function Products() {
       {isLoading ? (
         <h3>Loading...</h3>
       ) : (
-        posts.map((post) => (
-          <div key={post.id}>
-            <h3>
-              <Link to={`/san-pham/${post.id}`}>{post.title}</Link>
-            </h3>
-            <hr />
-          </div>
-        ))
+        <>
+          {posts.map((post) => (
+            <div key={post.id}>
+              <h3>
+                <Link to={`/san-pham/${post.id}`}>{post.title}</Link>
+              </h3>
+              <hr />
+            </div>
+          ))}
+          <button
+            onClick={() => {
+              setPage(page + 1);
+              window.scroll(0, 0);
+            }}
+          >
+            Next
+          </button>
+        </>
       )}
     </div>
   );
