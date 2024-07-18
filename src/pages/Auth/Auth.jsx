@@ -1,7 +1,8 @@
 export default function Auth() {
   return (
     <div>
-      <h1>Auth</h1>
+      <h1>Login</h1>
+      <p>Please login to continue</p>
     </div>
   );
 }

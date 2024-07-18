@@ -14,38 +14,33 @@ import BestSeller from "./pages/BestSeller/BestSeller";
 import BestSellerMonth from "./pages/BestSeller/BestSellerMonth";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import Auth from "./pages/Auth/Auth";
+import MainLayout from "./layouts/MainLayout";
+import AuthLayout from "./layouts/AuthLayout";
 export default function App() {
   return (
-    <div className="container py-3">
-      <div className="row">
-        <div className="col-3">
-          <Menu />
-        </div>
-        <div className="col-9">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route element={<AuthMiddleware />}>
-              <Route path="/gioi-thieu" element={<About />} />
-              <Route path="/san-pham">
-                <Route index element={<Products />} />
-                <Route path=":path" element={<ProductDetail />} />
-                <Route path="ban-chay">
-                  <Route index element={<BestSeller />} />
-                  <Route path="theo-thang" element={<BestSellerMonth />} />
-                </Route>
-              </Route>
-              <Route path="/lien-he" element={<Contact />} />
-              <Route path="/thanh-cong" element={<ThankYou />} />
-              <Route path="/forbidden" element={<Forbidden />} />
-              <Route path="/users" element={<Users />} />
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route element={<AuthMiddleware />}>
+          <Route path="/gioi-thieu" element={<About />} />
+          <Route path="/san-pham">
+            <Route index element={<Products />} />
+            <Route path=":path" element={<ProductDetail />} />
+            <Route path="ban-chay">
+              <Route index element={<BestSeller />} />
+              <Route path="theo-thang" element={<BestSellerMonth />} />
             </Route>
-            <Route path="/auth">
-              <Route path="login" element={<Auth />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </div>
-    </div>
+          </Route>
+          <Route path="/lien-he" element={<Contact />} />
+          <Route path="/thanh-cong" element={<ThankYou />} />
+          <Route path="/forbidden" element={<Forbidden />} />
+          <Route path="/users" element={<Users />} />
+        </Route>
+      </Route>
+      <Route path="/auth" element={<AuthLayout />}>
+        <Route path="login" element={<Auth />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
