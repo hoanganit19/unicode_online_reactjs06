@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
 import AuthMiddleware from "../middlewares/AuthMiddleware";
-import About from "../pages/About";
+// import About from "../pages/About";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProductDetail";
 import BestSeller from "../pages/BestSeller/BestSeller";
@@ -11,12 +11,13 @@ import Contact from "../pages/Contact";
 import ThankYou from "../pages/ThankYou";
 import Forbidden from "../pages/Forbidden";
 import Users from "../pages/Users";
+import SuspenseWrap from "../components/SuspenseWrap";
 
 export const privateRouter = (
   <Route element={<MainLayout />}>
     <Route path="/" element={<Home />} />
     <Route element={<AuthMiddleware />}>
-      <Route path="/gioi-thieu" element={<About />} />
+      <Route path="/gioi-thieu" element={<SuspenseWrap path="pages/About" />} />
       <Route path="/san-pham">
         <Route index element={<Products />} />
         <Route path=":path" element={<ProductDetail />} />
